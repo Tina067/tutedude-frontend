@@ -17,7 +17,7 @@ const CertificateForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/generate-certificate', formData);
+      await axios.post('https://tutedude-backend.onrender.com/generate-certificate', formData);
       // Clear form after submission
       setFormData({ name: '', email: '', course: '', date: '' });
       // You may add a success message here
