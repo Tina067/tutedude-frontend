@@ -7,8 +7,9 @@ const CertificateForm = () => {
     name: '',
     email: '',
     course: '',
-    date: '',
+    date: ''
   });
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,9 +19,9 @@ const CertificateForm = () => {
     e.preventDefault();
     try {
       await axios.post('https://tutedude-backend.onrender.com/generate-certificate', formData);
+      setSuccessMessage('Certificate generated and saved successfully');
       // Clear form after submission
       setFormData({ name: '', email: '', course: '', date: '' });
-      // You may add a success message here
     } catch (error) {
       console.error('Error submitting certificate request:', error);
     }
@@ -44,6 +45,7 @@ const CertificateForm = () => {
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
+      {successMessage && <div className="success-message">{successMessage}</div>}
     </div>
   );
 };
